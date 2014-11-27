@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 
 
 public class ClientBotserver implements IOCallback{
-	private static final String URL_WEBSOCKET = "http://localhost:8080";
+	private static final String URL_WEBSOCKET = "https://guebot.herokuapp.com";
     public static final String MOVEMENT_CHANNEL = "movement";
     public static final String STATUS_CHANNEL = "status";
 	private SocketIO socket;
