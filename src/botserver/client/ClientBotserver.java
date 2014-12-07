@@ -1,6 +1,9 @@
 package botserver.client;
 
 import java.net.MalformedURLException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.SSLContext;
 
 import io.socket.IOAcknowledge;
 import io.socket.IOCallback;
@@ -13,20 +16,21 @@ import com.google.gson.JsonElement;
 
 
 public class ClientBotserver implements IOCallback{
-	private static final String URL_WEBSOCKET = "https://guebot.herokuapp.com";
+	private static final String URL_WEBSOCKET ="https://guebot.herokuapp.com:443";
     public static final String MOVEMENT_CHANNEL = "movement";
     public static final String STATUS_CHANNEL = "status";
 	private SocketIO socket;
 	 
-	public ClientBotserver(){
+	public ClientBotserver() throws NoSuchAlgorithmException{
 		startConnection();
 	}
 	 
-	public void startConnection(){
+	public void startConnection() throws NoSuchAlgorithmException{
 		try {
-            // Try making the socket connection
-            socket = new SocketIO(URL_WEBSOCKET);
-            socket.connect(this);
+            SocketIO.setDefaultSSLSocketFactory(SSLContext.getDefault());
+            socket = new SocketIO();
+            socket.connect(URL_WEBSOCKET, this);
+
         } catch (MalformedURLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
