@@ -12,6 +12,7 @@ public class JSONmessage {
 		JsonObject move = new JsonObject();
 		
 		data.add("instruction",new JsonPrimitive( instruction ) );
+		data.add("userId",new JsonPrimitive( "Fabio" ) );
 		data.add("value",new JsonPrimitive( value ) );
 		
 		move.add("token", new JsonPrimitive( token ) );
